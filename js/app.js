@@ -60,6 +60,8 @@ async function loadRequests() {
     updateDashboard(allRequests);
 
     displayRequests(allRequests);
+
+    updateFilterResults(allRequests.length);
 }
 
 
@@ -551,6 +553,25 @@ function filterRequests() {
 
 
     displayRequests(filteredRequests);
+
+    updateFilterResults(filteredRequests.length);
+}
+
+
+function updateFilterResults(resultCount) {
+
+    const resultsMessage =
+        document.getElementById("filterResults");
+
+    if (!resultsMessage) {
+        return;
+    }
+
+    const totalCount = allRequests.length;
+    const requestLabel = resultCount === 1 ? "request" : "requests";
+
+    resultsMessage.textContent =
+        `Showing ${resultCount} of ${totalCount} ${requestLabel}`;
 }
 
 

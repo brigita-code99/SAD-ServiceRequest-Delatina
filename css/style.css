@@ -390,6 +390,17 @@ button {
 }
 
 
+.filter-results {
+    margin-top: 16px;
+
+    color: #4b5563;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
 /* ==========================================
    TABLE
    ========================================== */
@@ -689,6 +700,8 @@ td:nth-child(5) {
     .filters {
         grid-template-columns:
             1fr 1fr;
+
+        gap: 16px;
     }
 
 
@@ -720,6 +733,8 @@ td:nth-child(5) {
 
     .main-header h1 {
         font-size: 21px;
+
+        overflow-wrap: anywhere;
     }
 
 
@@ -729,7 +744,7 @@ td:nth-child(5) {
 
 
     .container {
-        width: 94%;
+        width: calc(100% - 24px);
 
         margin-top: 20px;
     }
@@ -740,6 +755,11 @@ td:nth-child(5) {
     .filter-section,
     .table-section {
         padding: 18px;
+    }
+
+
+    h2 {
+        font-size: 21px;
     }
 
 
@@ -760,6 +780,8 @@ td:nth-child(5) {
     .filters {
         grid-template-columns:
             1fr;
+
+        gap: 0;
     }
 
 
@@ -785,6 +807,13 @@ td:nth-child(5) {
         padding: 25px 20px;
     }
 
+
+    .table-container {
+        margin-right: -18px;
+
+        padding-right: 18px;
+    }
+
 }
 
 
@@ -799,6 +828,21 @@ td:nth-child(5) {
 
     .dashboard-card p {
         font-size: 28px;
+    }
+
+
+    .dashboard-section,
+    .form-section,
+    .filter-section,
+    .table-section {
+        padding: 15px;
+    }
+
+
+    .table-container {
+        margin-right: -15px;
+
+        padding-right: 15px;
     }
 
 
