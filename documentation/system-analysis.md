@@ -1,34 +1,44 @@
-# Online Service Request Management System
+Online Service Request Management System
 
-## Purpose
+1. Problem State
+   Technical issues are currently communicated to the university's ICT Office via a variety of channels, including social media, text messages, and verbal requests. Some issues may be overlooked, repeated, or improperly tracked because requests are dispersed across several channels. Technical support requests can be submitted, viewed, searched, filtered, updated, and deleted by authorized users through a centralized web-based platform provided by the ICT Service Request Management System. The system will assist the ICT Office in organizing service requests, keeping track of their priority and status, and making sure that requests are appropriately documented and handled.
 
-This system gives the Delatina team one place to submit, triage, assign, and resolve internal service requests. The static front end can run from GitHub Pages; Supabase supplies authentication and the persistent request data when configured.
+2. Actors
+   The primary actor identified by the activity is:
 
-## Architecture
+Primary Actor: System User / ICT Personnel
+    The actor interacts with the system to manage ICT service requests. The required activities include logging in, viewing the dashboard, creating requests, viewing requests, searching and filtering records, updating requests, deleting requests, and logging out.
 
-- **Presentation:** `index.html` is the authenticated request workspace and `login.html` is the sign-in route. `css/style.css` contains the responsive visual system.
-- **Client logic:** `js/app.js` renders and filters requests, handles request creation feedback, and currently includes an intentionally small demo dataset for local preview. `js/auth.js` owns sign-in and sign-out.
-- **Data and auth:** `js/supabase.js` creates a Supabase client only when `SUPABASE_URL` and `SUPABASE_ANON_KEY` are supplied. The `service_requests` query is ready for the production table.
-- **Hosting:** Push the repository to GitHub and enable GitHub Pages for the `main` branch. The app uses relative paths, so it works at a project-page URL.
+Actor                 Description
+System User 
+/ ICT Personnel.       An authorized                         user who logs                          into the system                        and manages ICT                        service                                requests.
 
-## Supabase setup
+3. Use Case Diagram (mermaid)
+   flowchart LR
+    User["System User / ICT Personnel"]
 
-Run [`supabase/migrations/20260908000000_create_service_requests.sql`](../supabase/migrations/20260908000000_create_service_requests.sql) in the Supabase SQL Editor. It creates the `public.service_requests` table with the columns used by `js/app.js`, enables Row Level Security, and adds authenticated-user policies. Use the anon/publishable key in the browser; never expose a service-role key.
+    subgraph System["ICT Service Request Management System"]
+        Login["Login"]
+        Dashboard["View Dashboard"]
+        Create["Create Request"]
+        View["View Requests"]
+        Search["Search Request"]
+        Filter["Filter Requests"]
+        Update["Update Request"]
+        Delete["Delete Request"]
+        Logout["Logout"]
+    end
 
-Before deployment, define the two constants in a small configuration script loaded before `js/supabase.js`:
+    User --> Login
+    User --> Dashboard
+    User --> Create
+    User --> View
+    User --> Search
+    User --> Filter
+    User --> Update
+    User --> Delete
+    User --> Logout
 
-```html
-<script>
-  window.SUPABASE_URL = 'https://your-project.supabase.co';
-  window.SUPABASE_ANON_KEY = 'your-anon-key';
-</script>
-```
 
-For a production implementation, replace the demo array in `app.js` with `getServiceRequests()`, map the returned database columns to the table view, and add an authenticated insert to the request form handler.
-
-## User flow
-
-1. A team member signs in with Supabase Auth.
-2. They scan request metrics, search or filter requests, and submit a new request.
-3. An administrator reviews priority and status, then updates the record in Supabase.
-4. The table and summary metrics provide a lightweight operational view.
+   
+   
