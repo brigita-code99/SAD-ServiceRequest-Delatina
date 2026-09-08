@@ -13,7 +13,7 @@ This system gives the Delatina team one place to submit, triage, assign, and res
 
 ## Supabase setup
 
-Run [`supabase/migrations/20260908000000_create_service_requests.sql`] in the Supabase SQL Editor. It creates the `public.service_requests` table with the columns used by `js/app.js`, enables Row Level Security, and adds authenticated-user policies. Use the anon/publishable key in the browser; never expose a service-role key.
+Run [`supabase/migrations/20260908000000_create_service_requests.sql`](../supabase/migrations/20260908000000_create_service_requests.sql) in the Supabase SQL Editor. It creates the `public.service_requests` table with the columns used by `js/app.js`, enables Row Level Security, and adds authenticated-user policies. Use the anon/publishable key in the browser; never expose a service-role key.
 
 Before deployment, define the two constants in a small configuration script loaded before `js/supabase.js`:
 

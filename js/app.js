@@ -38,7 +38,7 @@ async function loadRequests() {
     const { data, error } = await supabaseClient
         .from("service_requests")
         .select("*")
-        .order("created_at", { ascending: false });
+        .order("id", { ascending: true });
 
     if (error) {
 
@@ -523,6 +523,12 @@ function filterRequests() {
             ||
 
             request.description
+                .toLowerCase()
+                .includes(searchValue)
+
+            ||
+
+            request.priority
                 .toLowerCase()
                 .includes(searchValue);
 
