@@ -73,7 +73,7 @@ Live System:
 https://brigita-code99.github.io/SAD-ServiceRequest-Delatina/login.html
 
 Supabase:
-postgresql://postgres:Delatinalovely2@db.dwnhpecgdtmhoeojayeo.supabase.co:5432/postgres
+https://dwnhpecgdtmhoeojayeo.supabase.co/rest/v1/
 
 Test Account:
 lovely@adssu.com
