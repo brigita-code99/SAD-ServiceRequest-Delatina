@@ -8,7 +8,7 @@ Project Title: ICT Service Request Management System
 GitHub Repository
 
 GitHub Repository:
-https://brigita-code99.github.io/SAD-ServiceRequest-Delatina/
+https://github.com/brigita-code99/SAD-ServiceRequest-Delatina.git
 
 The GitHub repository contains the complete source code of the ICT Service Request Management System, including the HTML, CSS, JavaScript files, Supabase integration, authentication functions, CRUD operations, search and filtering functions, and system documentation.
 
@@ -68,7 +68,7 @@ Student: LOVELY O. DELATINA
 Section: BSIT-3A
 
 GitHub Repository:
-https://brigita-code99.github.io/SAD-ServiceRequest-Delatina/
+https://github.com/brigita-code99/SAD-ServiceRequest-Delatina.git
 
 Live System:
 https://brigita-code99.github.io/SAD-ServiceRequest-Delatina/login.html
