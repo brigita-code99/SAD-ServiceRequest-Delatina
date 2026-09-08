@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +15,15 @@
 
         <div class="login-card">
 
-            <h1>ICT Service Request</h1>
+            <div class="login-header">
+                <h1>ICT Service Request</h1>
 
-            <h2>Login</h2>
+                <h2>Login</h2>
 
-            <p class="login-subtitle">
-                Service Request Management System
-            </p>
+                <p class="login-subtitle">
+                    Service Request Management System
+                </p>
+            </div>
 
             <form id="loginForm">
 
@@ -34,6 +35,7 @@
                         id="email"
                         name="email"
                         placeholder="Enter your email"
+                        autocomplete="email"
                         required
                     >
                 </div>
@@ -41,26 +43,65 @@
                 <div class="form-group">
                     <label for="password">Password</label>
 
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        required
-                    >
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="password-toggle"
+                            aria-label="Show password"
+                        >
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <div class="login-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me</span>
+                    </label>
                 </div>
 
                 <button type="submit" class="btn-primary">
                     Login
                 </button>
 
-                <p class="login-account">
-    Account to log in:<br>
-    Email: lovely@adssu.com<br>
-    Password: lovelydelatina
-</p>
+                <p id="message" class="message"></p>
+
+                <div class="login-account">
+                    <div class="account-title">
+                        Account to Log In
+                    </div>
+
+                    <div class="account-details">
+                        <p>
+                            <strong>Email:</strong>
+                            lovely@adssu.com
+                        </p>
+
+                        <p>
+                            <strong>Password:</strong>
+                            lovelydelatina
+                        </p>
+                    </div>
+                </div>
 
             </form>
+
+            <div class="login-footer">
+                <p>
+                    ICT Service Request Management System
+                </p>
+            </div>
 
         </div>
 
@@ -69,6 +110,31 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase.js"></script>
     <script src="js/auth.js"></script>
+
+    <script>
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", function () {
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePassword.textContent = "Hide";
+                togglePassword.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+            } else {
+                passwordInput.type = "password";
+                togglePassword.textContent = "Show";
+                togglePassword.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+            }
+
+        });
+    </script>
 
 </body>
 </html>
