@@ -5,7 +5,6 @@ Section: BSIT-3A
 Course: Systems Analysis and Design (SAD)
 Project Title: ICT Service Request Management System
 
-GitHub Repository
 
 GitHub Repository:
 https://github.com/brigita-code99/SAD-ServiceRequest-Delatina.git
