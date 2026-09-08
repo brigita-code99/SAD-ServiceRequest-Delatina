@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ICT Service Request Management System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+
+        <div class="header-content">
+
+            <div>
+                <h1>ICT Service Request Management System</h1>
+                <p>Manage and monitor ICT technical support requests</p>
+            </div>
+
+            <button id="logoutBtn" class="btn-logout">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+    <main class="container">
+
+        <section class="dashboard-section">
+
+            <h2>Dashboard</h2>
+
+            <div class="dashboard-cards">
+
+                <div class="dashboard-card">
+                    <h3>Total Requests</h3>
+                    <p id="totalRequests">0</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Pending</h3>
+                    <p id="pendingRequests">0</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>In Progress</h3>
+                    <p id="inProgressRequests">0</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Completed</h3>
+                    <p id="completedRequests">0</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="form-section">
+
+            <h2 id="formTitle">New Service Request</h2>
+
+            <form id="requestForm">
+
+                <!-- Hidden field used when editing -->
+                <input type="hidden" id="requestId">
+
+
+                <div class="form-grid">
+
+                    <!-- Requester Name -->
+                    <div class="form-group">
+
+                        <label for="requesterName">
+                            Requester Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="requesterName"
+                            placeholder="Enter requester name"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="department">
+                            Department
+                        </label>
+
+                        <input
+                            type="text"
+                            id="department"
+                            placeholder="Enter department"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="category">
+                            Category
+                        </label>
+
+                        <select id="category" required>
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="Computer Repair">
+                                Computer Repair
+                            </option>
+
+                            <option value="Software Installation">
+                                Software Installation
+                            </option>
+
+                            <option value="Internet/Network Problem">
+                                Internet/Network Problem
+                            </option>
+
+                            <option value="Printer Problem">
+                                Printer Problem
+                            </option>
+
+                            <option value="Account/Access Concern">
+                                Account/Access Concern
+                            </option>
+
+                            <option value="Other ICT Concern">
+                                Other ICT Concern
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="priority">
+                            Priority
+                        </label>
+
+                        <select id="priority" required>
+
+                            <option value="">
+                                Select priority
+                            </option>
+
+                            <option value="Low">
+                                Low
+                            </option>
+
+                            <option value="Medium">
+                                Medium
+                            </option>
+
+                            <option value="High">
+                                High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        rows="4"
+                        placeholder="Describe the ICT problem or request..."
+                        required
+                    ></textarea>
+
+                </div>
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        id="submitBtn"
+                        class="btn-primary"
+                    >
+                        Submit Request
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelEditBtn"
+                        class="btn-secondary"
+                        style="display: none;"
+                    >
+                        Cancel Edit
+                    </button>
+
+                </div>
+
+                <p id="formMessage" class="message"></p>
+
+            </form>
+
+        </section>
+
+        <section class="filter-section">
+
+            <h2>Service Requests</h2>
+
+            <div class="filters">
+
+                <!-- Search -->
+                <div class="filter-group">
+
+                    <label for="searchInput">
+                        Search
+                    </label>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search requester or description..."
+                    >
+
+                </div>
+
+                <div class="filter-group">
+
+                    <label for="statusFilter">
+                        Status
+                    </label>
+
+                    <select id="statusFilter">
+
+                        <option value="All">
+                            All
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="In Progress">
+                            In Progress
+                        </option>
+
+                        <option value="Completed">
+                            Completed
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="filter-group">
+
+                    <label for="priorityFilter">
+                        Priority
+                    </label>
+
+                    <select id="priorityFilter">
+
+                        <option value="All">
+                            All
+                        </option>
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="table-section">
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Requester</th>
+
+                            <th>Department</th>
+
+                            <th>Category</th>
+
+                            <th>Description</th>
+
+                            <th>Priority</th>
+
+                            <th>Status</th>
+
+                            <th>Date</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="requestTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="9"
+                                class="empty-message"
+                            >
+                                Loading requests...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
