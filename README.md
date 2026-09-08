@@ -73,7 +73,7 @@ Live System:
 https://brigita-code99.github.io/SAD-ServiceRequest-Delatina/login.html
 
 Supabase:
-https://dwnhpecgdtmhoeojayeo.supabase.co/rest/v1/
+https://supabase.com/dashboard/project/dwnhpecgdtmhoeojayeo
 
 Test Account:
 lovely@adssu.com
