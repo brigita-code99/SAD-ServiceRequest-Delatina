@@ -592,78 +592,249 @@ td:nth-child(5) {
    ========================================== */
 
 .login-container {
+    --login-ink: #10243f;
+    --login-muted: #68758a;
+    --login-blue: #1677ff;
+    --login-cyan: #35d0c7;
+    --login-coral: #ff796d;
+
     min-height: 100vh;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
-    padding: 20px;
-
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 48px 20px;
     background:
-        linear-gradient(
-            135deg,
-            #eff6ff,
-            #f4f6f8
-        );
+        radial-gradient(circle at 13% 16%, rgba(53, 208, 199, 0.22), transparent 27%),
+        radial-gradient(circle at 88% 84%, rgba(255, 121, 109, 0.2), transparent 25%),
+        #0b1930;
+}
+
+.login-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.32;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: linear-gradient(to bottom right, black, transparent 78%);
+}
+
+.login-container::after {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: -170px;
+    top: -175px;
+    z-index: -1;
+    border: 1px solid rgba(53, 208, 199, 0.4);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 28px rgba(53, 208, 199, 0.05),
+        0 0 0 58px rgba(53, 208, 199, 0.04);
 }
 
 
 .login-card {
     width: 100%;
-
-    max-width: 430px;
-
-    background: white;
-
-    padding: 35px;
-
-    border-radius: 12px;
-
+    max-width: 458px;
+    position: relative;
+    padding: 46px 44px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.96);
     box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.10);
+        0 28px 80px rgba(0, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.12);
+    animation: login-card-in 0.65s ease both;
+}
+
+.login-card::before {
+    content: "";
+    display: block;
+    width: 46px;
+    height: 6px;
+    margin-bottom: 28px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--login-blue), var(--login-cyan));
+}
+
+@keyframes login-card-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 
 .login-card h1 {
-    text-align: center;
-
-    color: #1e3a8a;
-
-    font-size: 25px;
-
-    margin-bottom: 8px;
+    color: var(--login-ink);
+    font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+    font-size: 29px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin-bottom: 10px;
 }
 
 
 .login-card h2 {
-    text-align: center;
-
-    font-size: 22px;
-
-    margin-bottom: 5px;
+    color: var(--login-blue);
+    font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+    font-size: 17px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
 }
 
 
 .login-subtitle {
-    text-align: center;
-
-    color: #6b7280;
-
+    color: var(--login-muted);
     font-size: 14px;
-
-    margin-bottom: 25px;
+    margin-bottom: 32px;
 }
 
+.login-card .form-group label {
+    color: var(--login-ink);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+}
+
+.login-card .form-group input {
+    min-height: 50px;
+    padding: 13px 15px;
+    border: 1px solid #d8e0eb;
+    border-radius: 10px;
+    background: #f8fafc;
+    color: var(--login-ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.login-card .form-group input:focus {
+    border-color: var(--login-blue);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(22, 119, 255, 0.12);
+}
+
+.login-card .form-group input::placeholder {
+    color: #9aa6b6;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 72px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    border: 0;
+    background: transparent;
+    color: var(--login-blue);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px;
+}
+
+.password-toggle:hover {
+    color: #0b55c5;
+}
+
+.login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2px 0 24px;
+}
+
+.remember-me {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--login-muted);
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.remember-me input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--login-blue);
+}
 
 .login-card .btn-primary {
     width: 100%;
+    min-height: 52px;
+    border-radius: 10px;
+    background: linear-gradient(100deg, #1267e8, #1687ff);
+    box-shadow: 0 10px 20px rgba(22, 119, 255, 0.24);
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
 
-    padding: 12px;
+.login-card .btn-primary:hover {
+    background: linear-gradient(100deg, #0d5bd0, #0878eb);
+    box-shadow: 0 13px 26px rgba(22, 119, 255, 0.32);
+    filter: saturate(1.08);
+    transform: translateY(-2px);
+}
 
-    font-size: 16px;
+.login-card .message {
+    min-height: 20px;
+    margin: 14px 0 0;
+    text-align: center;
+}
+
+.login-account {
+    margin-top: 24px;
+    padding: 14px 16px;
+    border-left: 3px solid var(--login-coral);
+    border-radius: 0 10px 10px 0;
+    background: #fff5f1;
+    color: #6c5260;
+    font-size: 12px;
+}
+
+.account-title {
+    margin-bottom: 7px;
+    color: #b34d4d;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.account-details p + p {
+    margin-top: 3px;
+}
+
+.login-footer {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid #e8edf3;
+    color: #9aa6b6;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 
@@ -794,7 +965,7 @@ td:nth-child(5) {
 
 
     .login-card {
-        padding: 25px 20px;
+        padding: 34px 22px 24px;
     }
 
 
@@ -837,7 +1008,7 @@ td:nth-child(5) {
 
 
     .login-card h1 {
-        font-size: 21px;
+        font-size: 25px;
     }
 
 }
